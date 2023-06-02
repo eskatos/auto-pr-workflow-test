@@ -10,6 +10,7 @@ jobs:
         with:
           fetch-depth: 0
       - id: pr_check
+        shell: bash
         run: |
           _check_branch=$(git ls-remote --heads origin automated/update-agp-versions)
           if [[ -z ${_check_branch} ]]; then
