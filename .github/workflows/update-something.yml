@@ -18,10 +18,6 @@ jobs:
             echo "continue=true" >> "$GITHUB_OUTPUT"
           else
             echo "remote branch 'automated/update-agp-versions' already exists"
-            git log --pretty=format:"%cn" HEAD..origin/automated/update-agp-versions
-            git log --pretty=format:"%cn" HEAD..origin/automated/update-agp-versions|sort -u
-            git log --pretty=format:"%cn" HEAD..origin/automated/update-agp-versions | { grep -v GitHub || true; }
-            echo "plop"
             _check_committers=$(git log --pretty=format:"%cn" HEAD..origin/automated/update-agp-versions | sort -u | { grep -v GitHub || true; })
             if [[ -z ${_check_committers} ]]; then
               echo "only automated commits on the branch, let's continue"
