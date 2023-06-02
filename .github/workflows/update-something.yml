@@ -20,6 +20,7 @@ jobs:
             git log --pretty=format:"%cn" HEAD..origin/automated/update-agp-versions
             git log --pretty=format:"%cn" HEAD..origin/automated/update-agp-versions|sort -u
             git log --pretty=format:"%cn" HEAD..origin/automated/update-agp-versions|sort -u|grep -v GitHub
+            echo "plop"
             _check_committers=$(git log --pretty=format:"%cn" HEAD..origin/automated/update-agp-versions|grep -v GitHub)
             if [[ -z ${_check_committers} ]]; then
               echo "only automated commits on the branch, let's continue"
