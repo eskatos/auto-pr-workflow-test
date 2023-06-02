@@ -11,11 +11,7 @@ jobs:
         run: |
           _check_branch=$(git ls-remote --heads origin automated/update-agp-versions)
           if [[ -z ${_check_branch} ]]; then
-            echo "remote branch does not exist, let's continue" > /dev/null 2>&1
             echo "continue=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "remote branch already exists, let's stop here" > /dev/null 2>&1
-            echo "continue=false" >> "$GITHUB_OUTPUT"
           fi
       - uses: actions/setup-java@v3
         if: steps.pr_check.outputs.continue
