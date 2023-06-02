@@ -14,3 +14,12 @@ jobs:
       - uses: gradle/gradle-build-action@v2
       - run: ./gradlew updateSomething
       - uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: Update tested AGP versions
+          title: Update tested AGP versions
+          body: |
+            Update tested AGP versions
+          labels: a:chore
+          assignees: eskatos
+          reviewers: eskatos
+          draft: true
