@@ -14,7 +14,12 @@ jobs:
             echo "remote branch 'automated/update-agp-versions' does not exist, let's continue"
             echo "continue=true" >> "$GITHUB_OUTPUT"
           else
-            echo "remote branch 'automated/update-agp-versions' already exists, let's stop here"
+            echo "remote branch 'automated/update-agp-versions' already exists"
+            _check_committers=$(git log --pretty=format:"%cn" HEAD..origin/automated/update-agp-versions|sort -u|grep -v GitHub)
+            if [[ -z ${_check_committers} ]]; then
+              echo "only automated commits on the branch, let's continue"
+              echo "continue=true" >> "$GITHUB_OUTPUT"
+            fi
           fi
       - uses: actions/setup-java@v3
         if: steps.pr_check.outputs.continue
