@@ -1,9 +1,9 @@
-name: Update Something
+name: Update tested AGP versions
 on:
   workflow_dispatch:
 
 jobs:
-  update_something:
+  update_agp:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -12,9 +12,10 @@ jobs:
           distribution: temurin
           java-version: 17
       - uses: gradle/gradle-build-action@v2
-      - run: ./gradlew updateSomething
+      - run: ./gradlew updateAgpVersions
       - uses: peter-evans/create-pull-request@v5
         with:
+          branch: automated/update-agp-versions
           commit-message: Update tested AGP versions
           title: Update tested AGP versions
           body: |
